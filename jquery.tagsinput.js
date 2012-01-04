@@ -265,6 +265,7 @@
 					} else if (jQuery.ui.autocomplete !== undefined) {
 						$(data.fake_input).autocomplete(autocomplete_options);
 						$(data.fake_input).bind('autocompleteselect',data,function(event,ui) {
+							gotAutoComplete = true;
 							$(event.data.real_input).addTag(ui.item.value,{focus:true,unique:(settings.unique)});
 							return false;
 						});
@@ -294,7 +295,6 @@
 							var d = $(this).attr('data-default');
 							if ($(event.data.fake_input).val()!='' && $(event.data.fake_input).val()!=d) { 
 								if( (event.data.minChars <= $(event.data.fake_input).val().length) && (!event.data.maxChars || (event.data.maxChars >= $(event.data.fake_input).val().length)) )
-									gotAutoComplete = true;
 									$(event.data.real_input).addTag($(event.data.fake_input).val(),{focus:true,unique:(settings.unique)});
 							} else {
 								$(event.data.fake_input).val($(event.data.fake_input).attr('data-default'));
